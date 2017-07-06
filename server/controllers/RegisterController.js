@@ -11,4 +11,37 @@ router.get('/register', function(req, res){
 	res.render('register', {});
 });
 
+router.post('/register', function(req, res){
+	User.findOne({username: req.body.username}, function(err, user){
+		if(user === null){
+			// want to register/create salt and hash
+			bcrypt.genSalt(10, function(err, salt){
+				bcrypt.hash(req.body.password, salt, function(err, hash){
+					var userDbEntry = {};
+					userDbEntry.username = req.body.usrname;
+					userDbEntry.password = hash;
+
+
+					User.create(userDbEntry, function(err, user){
+						if(user){
+							// if user created make session
+							req.session.username 	= user.username;
+							req.session.userId		= user.id;
+							req.session.isLoggedIn 	= true;
+
+							res.redirect('/profile')
+						}
+						else{
+							res.send('there was an error')
+						}
+					})
+				})
+			})
+		}
+		else{
+			res.render('register', {loginmessage: 'Username is taken'})
+		}
+	})
+})
+
 module.exports = router;

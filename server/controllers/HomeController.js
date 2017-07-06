@@ -38,11 +38,9 @@ router.post('/', function(req, res){
 
 
 
-
-
 router.get('/logout', function(req, res){
 	req.session.destroy(function(err){
-		res.redirect('/user/start')
+		res.redirect('/')
 	});
 });
 
