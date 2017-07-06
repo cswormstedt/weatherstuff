@@ -5,4 +5,12 @@ var express = require('express'),
 
 	router.use(bodyParser.urlencoded({extended: true}));
 
+router.get('/all', function(req, res){
+	res.json(json)
+})
+
+router.get('/weather', function(req, res){
+	res.render('weather', {})
+})
+
 module.exports = router;

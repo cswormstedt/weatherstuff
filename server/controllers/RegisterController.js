@@ -7,11 +7,11 @@ var express = require('express'),
 	router.use(bodyParser.urlencoded({extended: true}));
 
 // get to / the main page
-router.get('/register', function(req, res){
+router.get('/', function(req, res){
 	res.render('register', {});
 });
 
-router.post('/register', function(req, res){
+router.post('/', function(req, res){
 	User.findOne({username: req.body.username}, function(err, user){
 		if(user === null){
 			// want to register/create salt and hash
