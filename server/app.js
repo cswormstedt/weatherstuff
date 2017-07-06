@@ -18,14 +18,16 @@ app.use(session({
 
 var PlaceController = require('./controllers/PlaceController');
 var CommentController = require('./controllers/CommentController');
-var UserConntroller = require('./controllers/UserController');
-// var HomeController = require('./controllers/HomeController');
+var HomeConntroller = require('./controllers/HomeController');
+var ProfileController = require('./controllers/ProfileController');
+var RegisterController = require('./controllers/RegisterController');
 
 
-app.use('/', PlaceController);
+app.use('/place', PlaceController);
 app.use('/comments', CommentController);
-app.use('/users', UserConntroller);
-// app.use('/', HomeController);
+app.use('/', HomeConntroller);
+app.use('/profile', ProfileController);
+app.use('/register', RegisterController);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -34,12 +36,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Handle 404
 app.use(function(req, res) {
- res.send('404: Page not Found', 404);
+ res.status(404).send('404: Page not Found');
 });
 
 // Handle 500
 app.use(function(error, req, res, next) {
- res.send('500: Internal Server Error', 500);
+ res.status(500).send('500: Internal Server Error')
 });
 
 server.listen(3000, function(){
