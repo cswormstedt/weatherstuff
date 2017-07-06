@@ -4,6 +4,7 @@ var PlaceSchema = new mongoose.Schema({
 	location: String,
 	latitude: String,
 	longitude: String,
+	weather: String,
 	comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 })
 

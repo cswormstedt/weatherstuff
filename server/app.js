@@ -3,9 +3,15 @@ var express = require('express'),
 	server 	= require('http').createServer(app),
 	path 	= require('path');
 
-	// db here
+	require('./db/db')
 
-// require controllers here
+var PlaceController = require('./controllers/PlaceController');
+var CommentController = require('./controllers/CommentController');
+var UserConntroller = require('./controllers/UserConntroller');
+
+app.use('/places', PlaceController);
+app.use('/comments', CommentController);
+app.use('/users', UserConntroller)
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
