@@ -15,6 +15,7 @@ app.use(session({
 	saveUninitialized: true,
 	cookie: {secure: false}
 }));
+	console.log(session)
 
 var PlaceController = require('./controllers/PlaceController');
 var CommentController = require('./controllers/CommentController');

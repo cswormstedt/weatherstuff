@@ -6,7 +6,7 @@ var express = require('express'),
 
 	router.use(bodyParser.urlencoded({extended: true}));
 
-// get to / the main page
+// get to /register page
 router.get('/', function(req, res){
 	res.render('register', {});
 });
@@ -18,7 +18,7 @@ router.post('/', function(req, res){
 			bcrypt.genSalt(10, function(err, salt){
 				bcrypt.hash(req.body.password, salt, function(err, hash){
 					var userDbEntry = {};
-					userDbEntry.username = req.body.usrname;
+					userDbEntry.username = req.body.username;
 					userDbEntry.password = hash;
 
 

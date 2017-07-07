@@ -1,6 +1,7 @@
 var express = require('express'),
 	router  = express.Router(),
 	Place   = require('../models/Place'),
+	Comment = require('../models/Comment'),
 	BodyParser = require('body-parser');
 
 	router.use(bodyParser.urlencoded({extended: true}));
